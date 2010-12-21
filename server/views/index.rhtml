@@ -1,0 +1,79 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+	"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<title>TV Program API</title>
+	</head>
+	<body>
+		<h1>TV Program API</h1>
+
+		<p>
+			<ol>
+				<li><a href="#introduction">Introduction</a></li>
+				<li><a href="#channels">Getting list of channels</a></li>
+				<li><a href="#today">Getting TV program for today</a></li>
+				<li><a href="#date">Getting TV program for a specific date</a></li>
+				<li><a href="#scope">Scope of the data</a></li>
+			</ol>
+		</p>
+
+		<h3><a name="introduction">Introduction</a></h3>
+		<p>
+			This API provides an easy way to access TV programs available in Polish TV. However, it does also include some other countries' channels and should be easily extendable. This document discusses basic functionality of the service, which is based on REST technology.
+		</p>
+		<h3><a name="channels">Getting list of channels</a></h3>
+		<p>
+			The first thing you should do is check the available list of channels. The request should look like:<br /><br />
+			<a href="http://<%= request.host %>:<%= request.port %>/channels">http://<%= request.host %>:<%= request.port %>/channels</a> <br /><br />
+			It should produce similar output to: <br />
+			<pre>
+	&lt;channels source=&quot;WP&quot;&gt;
+		&lt;channel id=&quot;1&quot;&gt;TVP 1&lt;/channel&gt;
+		&lt;channel id=&quot;2&quot;&gt;TVP 2&lt;/channel&gt;
+		&lt;channel id=&quot;3&quot;&gt;TVP Polonia&lt;/channel&gt;
+	&lt;/channels&gt;
+			</pre>
+		Note, that each channel has an id. It is used while requesting the TV program for this channel.
+		</p>
+		
+		<h3><a name="today">Getting TV program for today</a></h3>
+		<p>
+			Next step would be getting today's TV program. The request should look like:<br /><br />
+			<a href="http://<%= request.host %>:<%= request.port %>/channel/1/programs">http://<%= request.host %>:<%= request.port %>/channel/1/programs</a><br /><br />
+			This time the result is:
+			<pre>
+	&lt;channel id=&quot;1&quot; name=&quot;TVP 1&quot; date=&quot;2010-12-14&quot;&gt;
+		&lt;program&gt;
+			&lt;name&gt;Moda na sukces&lt;/name&gt;
+			&lt;time&gt;05:05&lt;/time&gt;
+			&lt;duration&gt;(25 min.)&lt;/duration&gt;
+			&lt;description&gt;
+				Stephanie uwalnia Storma od odpowiedzialno&#x15B;ci za zamach na jej &#x17C;ycie.
+				Loganowie s&#x105; jej wdzi&#x119;czni. 
+				Taylor sk&#x142;ada wizyt&#x119; Nickowi. O&#x15B;wiadcza, &#x17C;e zabierze do siebie ma&#x142;ego Jacka.
+			&lt;/description&gt;
+			&lt;episode&gt;odc. 5256&lt;/episode&gt;
+			&lt;category&gt;telenowela,&lt;/category&gt;
+		&lt;/program&gt;
+	&lt;/channel&gt;				
+			</pre>
+		This is the program for channel with id 1, which corresponds to TVP 1. (See the list of channels above). 
+		</p>
+
+		<h3><a name="date">Getting TV program for a specific date</a></h3>
+		<p>
+			If you wish to see the program for a specific day, the date should be added to the end of the URL in format YYYY-mm-dd (e.g. <%= @date %>). Request may look like:<br /><br />
+			<a href="http://<%= request.host %>:<%= request.port %>/channel/1/programs/<%= @date %>">http://<%= request.host %>:<%= request.port %>/channel/1/programs/<%= @date %></a><br /><br />
+			The output format is the same as above.
+		</p>
+		
+		<h3><a name="scope">Scope of the data</a></h3>
+		<p>Currently we store TV programs only for next seven days starting from today.</p>
+		
+		<hr />
+		<p>This API was created by <a href="http://staskie.com/blog/">Dominik Staskiewicz</a></p>
+		
+	</body>
+</html>
+
+
