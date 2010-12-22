@@ -4,7 +4,7 @@ TV Program API
 Introduction
 -------------------
 
-This application uses screen scraping to get the TV program available in Poland. It stores it in the database and provides nice REST API for accessing it.
+This application uses screen scraping to get the TV program listing available in Poland. It stores it in the database and provides an easy web service for accessing it.
 
 Installation:
 --------------------
