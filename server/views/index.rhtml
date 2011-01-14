@@ -3,6 +3,19 @@
 <html>
 	<head>
 		<title>TV Program API</title>
+		<script type="text/javascript">
+
+		  var _gaq = _gaq || [];
+		  _gaq.push(['_setAccount', 'UA-20400898-1']);
+		  _gaq.push(['_trackPageview']);
+
+		  (function() {
+		    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		  })();
+
+		</script>
 	</head>
 	<body>
 		<h1>TV Program API</h1>
@@ -24,7 +37,7 @@
 		<h3><a name="channels">Getting list of channels</a></h3>
 		<p>
 			The first thing you should do is check the available list of channels. The request should look like:<br /><br />
-			<a href="http://<%= request.host %>:<%= request.port %>/channels">http://<%= request.host %>:<%= request.port %>/channels</a> <br /><br />
+			<a href="http://<%= @host_name %>/channels">http://<%= @host_name %>/channels</a> <br /><br />
 			It should produce similar output to: <br />
 			<pre>
 	&lt;channels source=&quot;WP&quot;&gt;
@@ -39,7 +52,7 @@
 		<h3><a name="today">Getting TV program for today</a></h3>
 		<p>
 			Next step would be getting today's TV program. The request should look like:<br /><br />
-			<a href="http://<%= request.host %>:<%= request.port %>/channel/1/programs">http://<%= request.host %>:<%= request.port %>/channel/1/programs</a><br /><br />
+			<a href="http://<%= @host_name %>/channel/1/programs">http://<%= @host_name %>/channel/1/programs</a><br /><br />
 			This time the result is:
 			<pre>
 	&lt;channel id=&quot;1&quot; name=&quot;TVP 1&quot; date=&quot;2010-12-14&quot;&gt;
@@ -63,7 +76,7 @@
 		<h3><a name="date">Getting TV program for a specific date</a></h3>
 		<p>
 			If you wish to see the program for a specific day, the date should be added to the end of the URL in format YYYY-mm-dd (e.g. <%= @date %>). Request may look like:<br /><br />
-			<a href="http://<%= request.host %>:<%= request.port %>/channel/1/programs/<%= @date %>">http://<%= request.host %>:<%= request.port %>/channel/1/programs/<%= @date %></a><br /><br />
+			<a href="http://<%= @host_name %>/channel/1/programs/<%= @date %>">http://<%= @host_name %>/channel/1/programs/<%= @date %></a><br /><br />
 			The output format is the same as above.
 		</p>
 		

@@ -6,6 +6,7 @@ require 'environment'
 
 get '/' do
   @date = Time.now.strftime("%Y-%m-%d")
+  @host_name = host_name
   erb :index
 end
 
@@ -66,6 +67,11 @@ def exception(msg)
   builder do |xml|
     xml.exception msg
   end
+end
+
+def host_name
+  port = request.port
+  port == 80 ? request.host : request.host + ":" + port.to_s
 end
 
 after do
