@@ -139,8 +139,8 @@ module TvAPI
         date = date || Time.now.strftime("%Y-%m-%d")
         channel_link = link(:date => date, :channel_id => channel.data_source_channel_id)    
 
-        doc = get_html(channel_link)    
-        programs = extract_tv_program(doc)    
+        doc = get_html(channel_link)                    
+        doc.nil? ? [] : extract_tv_program(doc)
       end
     end
   end

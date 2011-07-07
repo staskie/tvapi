@@ -163,6 +163,11 @@ describe WPParser do
       @parser.tv_program(@channel, "2010-11-26").should be_kind_of Array
       @parser.tv_program(@channel, "2010-11-26").size.should == 41
     end
+    
+    it "returns empty array if error occured" do
+      @parser.should_receive(:get_html).and_return(nil)
+      @parser.tv_program(@channel, "2010-11-26").should == []
+    end
   end
 end
 
